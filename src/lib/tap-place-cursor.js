@@ -37,8 +37,9 @@ const tapPlaceCursorComponent = {
     }
     this.el.object3D.position.y = 0.1;
     this.el.object3D.position.lerp(this.cursorLocation, 0.4);
-    this.el.object3D.lookAt(this.threeCamera.position)
-    // this.el.object3D.rotation.y = this.threeCamera.rotation.y;
+    // this.el.object3D.lookAt(this.threeCamera.position)
+    // this.el.object3D.lookAt(this.threeCamera.position.x, this.threeCamera.position.y, 0)
+    this.el.object3D.rotation.y = this.threeCamera.rotation.y;
   },
 };
 export { tapPlaceCursorComponent };

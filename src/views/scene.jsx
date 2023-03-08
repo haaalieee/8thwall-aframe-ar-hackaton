@@ -1,5 +1,6 @@
 import React from "react";
 
+import { absPinchScaleComponent } from "../lib/absolute-pinch-scale";
 import { AFrameScene, DISABLE_IMAGE_TARGETS } from "../lib/aframe-components";
 import { annotationComponent } from "../lib/annotation-component";
 import { changeColorComponent } from "../lib/color-change";
@@ -13,6 +14,7 @@ const Scene = () => (
       { name: "tap-place-cursor", val: tapPlaceCursorComponent },
       { name: "change-color", val: changeColorComponent },
       { name: "annotation", val: annotationComponent },
+      { name: "absolute-pinch-scale", val: absPinchScaleComponent },
     ]}
     imageTargets={DISABLE_IMAGE_TARGETS}
   />

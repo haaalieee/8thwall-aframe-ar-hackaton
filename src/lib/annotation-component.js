@@ -3,7 +3,7 @@ const annotationComponent = {
     text: { default: "text here" }, // text label displays
     labeldistance: { default: 1 }, // distance to element before label appears
     hsdistance: { default: 2.85 }, // distance to element before hotspot appears
-    offsetY: { default: -0.05 }, // y offset of label
+    offsetY: { default: 0.1 }, // y offset of label
   },
   init() {
     this.camera = this.el.sceneEl.camera;
@@ -48,7 +48,7 @@ const annotationComponent = {
         dur: 250,
       });
       // change sphere color and size
-      this.el.setAttribute("radius", 0.010);
+      this.el.setAttribute("radius", 0.01);
       // brighten hotspot inner
       this.el.setAttribute("color", "#FD835E");
       // show text label
@@ -162,13 +162,15 @@ const annotationComponent = {
     this.scene.add(this.labelObj);
 
     // Toggle label when user clicks
-    this.el.addEventListener("click", () => {
-      if(!toggleLabel) {
-        this.activateLabel();
-      } else {
-        this.deactivateLabel();
-      }
-    });
+    // this.el.addEventListener("click", () => {
+    //   if (!toggleLabel) {
+    //     this.activateLabel();
+    //     console.log("active " + this.label.style.display);
+    //   } else {
+    //     this.deactivateLabel();
+    //     console.log("not active " + this.label.style.display);
+    //   }
+    // });
   },
   tick() {
     // track label position to hotspot
@@ -177,17 +179,17 @@ const annotationComponent = {
       new THREE.Vector3(
         this.worldPos.x,
         this.worldPos.y + this.data.offsetY,
-        this.worldPos.z
+        this.worldPos.z 
       )
     );
     this.labelRenderer.render(this.scene, this.camera);
     // proximity monitoring
-    // const distance = this.worldPos.distanceTo(this.camera.el.object3D.position);
-    // if (distance < this.data.labeldistance) {
-    //   this.activateLabel();
-    // } else {
-    //   this.deactivateLabel();
-    // }
+    const distance = this.worldPos.distanceTo(this.camera.el.object3D.position);
+    if (distance < this.data.labeldistance) {
+      this.activateLabel();
+    } else {
+      this.deactivateLabel();
+    }
     // if (distance < this.data.hsdistance) {
     //   this.activateHs();
     // } else {
