@@ -1,0 +1,23 @@
+<a-scene id="ascene" xrextras-tap-recenter landing-page xrextras-loading xrextras-runtime-error
+  xrextras-gesture-detector xrweb>
+
+  <a-entity light="
+    type: directional;
+    intensity: 0.8;
+    castShadow: true;
+    shadowMapHeight:2048;
+    shadowMapWidth:2048;
+    shadowCameraTop: 10;
+    target: #model;" xrextras-attach="target: model; offset: 1 15 3;" shadow>
+  </a-entity>
+
+  <a-camera id="camera" position="0 2 2" raycaster="objects: .cantap" cursor="fuse: false; rayOrigin: mouse;">
+  </a-camera>
+
+  <a-box id="model" position="0 0.5 0" material="color: #AD50FF;" class="cantap" xrextras-hold-drag
+    xrextras-two-finger-rotate xrextras-pinch-scale shadow></a-box>
+
+  <a-plane id="ground" height="2000" width="2000" rotation="-90 0 0" material="shader: shadow; opacity: 0.67" shadow>
+  </a-plane>
+
+</a-scene>
