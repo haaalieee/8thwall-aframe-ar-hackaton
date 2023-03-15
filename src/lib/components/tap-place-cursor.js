@@ -1,5 +1,5 @@
 // Component that places trees at cursor location when screen is tapped
-const tapPlaceCursorComponent = {
+export const tapPlaceCursorComponent = {
   init() {
     this.raycaster = new THREE.Raycaster();
     this.camera = document.getElementById("camera");
@@ -42,5 +42,4 @@ const tapPlaceCursorComponent = {
     this.el.object3D.rotation.y = this.threeCamera.rotation.y;
   },
 };
-export { tapPlaceCursorComponent };
 

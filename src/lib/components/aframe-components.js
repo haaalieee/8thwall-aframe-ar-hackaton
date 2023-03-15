@@ -29,7 +29,12 @@ const registerPrimitives = (primitives) =>
 // components can't be unloaded.
 //
 // Optionally imageTargets can be specified to override the set loaded by default.
-function AFrameScene({ sceneHtml, imageTargets, components, primitives }) {
+export function AFrameScene({
+  sceneHtml,
+  imageTargets,
+  components,
+  primitives,
+}) {
   useEffect(() => {
     if (imageTargets) {
       const configureImageTargets = () => {
@@ -57,5 +62,4 @@ function AFrameScene({ sceneHtml, imageTargets, components, primitives }) {
   }, []);
   return <></>;
 }
-const DISABLE_IMAGE_TARGETS = [];
-export { AFrameScene, DISABLE_IMAGE_TARGETS };
+export const DISABLE_IMAGE_TARGETS = [];

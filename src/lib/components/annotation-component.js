@@ -1,4 +1,4 @@
-const annotationComponent = {
+export const annotationComponent = {
   schema: {
     text: { default: "text here" }, // text label displays
     labeldistance: { default: 1 }, // distance to element before label appears
@@ -12,7 +12,7 @@ const annotationComponent = {
     let labelActivated;
     let hsActivated;
     // hotspot inner customization
-    this.el.setAttribute("radius", 0.03);
+    this.el.setAttribute("radius", 0.005);
     this.el.setAttribute("material", {
       shader: "flat",
       color: "#FF4713",
@@ -29,10 +29,10 @@ const annotationComponent = {
       alphaTest: 0.5,
       transparent: true,
     });
-    this.torus.setAttribute("radius", 0.05);
+    this.torus.setAttribute("radius", 0.010);
     this.torus.setAttribute("segments-radial", 12);
     this.torus.setAttribute("segments-tubular", 24);
-    this.torus.setAttribute("radius-tubular", 0.005);
+    this.torus.setAttribute("radius-tubular", 0.001);
     this.torus.setAttribute("xrextras-spin", "");
     this.el.appendChild(this.torus);
     this.activateLabel = () => {
@@ -48,7 +48,7 @@ const annotationComponent = {
         dur: 250,
       });
       // change sphere color and size
-      this.el.setAttribute("radius", 0.01);
+      this.el.setAttribute("radius", 0.005);
       // brighten hotspot inner
       this.el.setAttribute("color", "#FD835E");
       // show text label
@@ -75,7 +75,7 @@ const annotationComponent = {
         dur: 500,
       });
       // revert sphere color and size
-      this.el.setAttribute("radius", 0.03);
+      this.el.setAttribute("radius", 0.005);
       // revert to original hotspot inner color
       this.el.setAttribute("color", "#FF4713");
       // hide text label
@@ -198,5 +198,4 @@ const annotationComponent = {
   },
 };
 
-export { annotationComponent };
 

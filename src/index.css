@@ -41,3 +41,33 @@ code {
   box-shadow: 0px 0px 0px 0.3rem white;
   outline: none !important;
 }
+
+/** Recorder button */
+.recorder-container {
+  all: unset;
+  position: absolute;
+  bottom: 15%;
+  right: 50%;
+  transform: translateX(50%);
+  width: 200px;
+  height: 60px;
+  z-index: 1;
+}
+.progress-container {
+  display: none;
+}
+#recorder-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-family: "Nunito", sans-serif;
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+}
+
+#icon {
+  padding-right: 10px;
+}

@@ -1,4 +1,4 @@
-const absPinchScaleComponent = {
+export const absPinchScaleComponent = {
   schema: {
     min: { default: 0.1 },
     max: { default: 5 },
@@ -100,5 +100,4 @@ const absPinchScaleComponent = {
   },
 };
 
-export { absPinchScaleComponent };
 

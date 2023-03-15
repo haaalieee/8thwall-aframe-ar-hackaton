@@ -1,4 +1,4 @@
-const changeColorComponent = {
+export const changeColorComponent = {
   init() {
     const container = document.getElementById("container");
     // These hex colors are used by the UI buttons and car
@@ -47,5 +47,4 @@ const changeColorComponent = {
     });
   },
 };
-export { changeColorComponent };
 
