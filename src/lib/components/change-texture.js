@@ -120,6 +120,7 @@ const remapMaterialUVs = (
 export const changeTextureComponent = {
   init() {
     const container = document.getElementById("container");
+
     // These hex colors are used by the UI buttons and car
     // default: purple, orange, green, blue, black
     const colorList = ["#6a7a87", "#36adc4", "#c7a6bd", "#91ac9a", "#c09cb4"];

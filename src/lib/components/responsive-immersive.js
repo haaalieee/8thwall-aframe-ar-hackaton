@@ -19,9 +19,7 @@ export const responsiveImmersiveComponent = {
         // Desktop-specific behavior goes here
         hotspots.parentNode.removeChild(hotspots); // remove hotspots
         const addComponents = () => {
-          model.setAttribute("change-texture", "");
           model.setAttribute("reflections", "type: static");
-          model.setAttribute("absolute-pinch-scale", "");
         };
         model.getObject3D("mesh")
           ? addComponents()
@@ -43,7 +41,6 @@ export const responsiveImmersiveComponent = {
           // VR HMD (i.e. Oculus Quest) behavior goes here
           model.setAttribute("ignore-raycast", "");
           const addComponents = () => {
-            model.setAttribute("change-texture", "");
             model.setAttribute("reflections", "type: static");
           };
           model.getObject3D("mesh")
@@ -56,7 +53,6 @@ export const responsiveImmersiveComponent = {
           // AR HMD (i.e. Hololens) behavior goes here
           model.setAttribute("ignore-raycast", "");
           const addComponents = () => {
-            model.setAttribute("change-texture", "");
             model.setAttribute("reflections", "type: static");
           };
           model.getObject3D("mesh")
@@ -83,8 +79,6 @@ export const responsiveImmersiveComponent = {
         });
         const addComponents = () => {
           model.setAttribute("reflections", "type: realtime");
-          model.setAttribute("absolute-pinch-scale", "");
-          model.setAttribute("change-texture", "");
         };
         model.getObject3D("mesh")
           ? addComponents()

@@ -10,7 +10,11 @@ export const absPinchScaleComponent = {
       (s && { x: s, y: s, z: s }) || this.el.object3D.scale.clone();
     this.scaleFactor = 1;
     this.handleEvent = this.handleEvent.bind(this);
-    this.el.sceneEl.addEventListener("twofingermove", this.handleEvent);
+    this.el.addEventListener("componentchanged", (e) => {
+      if (e.detail.name === "visible") {
+        this.el.sceneEl.addEventListener("twofingermove", this.handleEvent);
+      }
+    });
     this.el.classList.add("cantap"); // Needs "objects: .cantap" attribute on raycaster.
     // Calculate glb-model bounding box
     this.calcMeshBounds = () => {
@@ -99,5 +103,3 @@ export const absPinchScaleComponent = {
     this.runTimer();
   },
 };
-
-

@@ -1,16 +1,43 @@
+import camera from "../../assets/camera-icon-white.png";
+
 export const customCaptureComponent = {
   init() {
     const model = document.getElementById("model");
-    const btn = document.getElementById("recorder-button");
-    
-    btn.style.display = "none";
+    const bottomList = document.getElementById("bottom-list");
+    const recorderContainer = document.getElementById("recorder");
+    const captureBtn = document.getElementById("recorder-button");
+    const textureSelectionContainer = document.getElementById("container");
+    const closePreviewBtn = document.getElementById("closePreviewButton");
+
+    bottomList.style.display = "none";
 
     model.addEventListener("componentchanged", (e) => {
+      const captureList = document.createElement("li");
+
       if (e.detail.name === "visible") {
-        btn.style.display = "block";
-        btn.innerHTML = `<img id="icon" src=${
-          require("../../assets/camera.svg").default
-        }> Capture`;
+        bottomList.prepend(captureList);
+        captureList.append(recorderContainer);
+        captureBtn.innerHTML = `<img id="icon" src=${camera}>`;
+
+        bottomList.style.display = "flex";
+
+        window.addEventListener("mediarecorder-photocomplete", () => {
+          // Hide list when screen preview is active
+          bottomList.style.display = "none";
+
+          // Hide model variants selection container preview is active
+          textureSelectionContainer.style.display = "none";
+        });
+
+        closePreviewBtn.addEventListener("click", () => {
+
+          // Show model variants selection container preview is active
+          textureSelectionContainer.style.display = "block";
+
+          
+          // Show list when screen preview is not active
+          bottomList.style.display = "flex";
+        });
       }
     });
   },

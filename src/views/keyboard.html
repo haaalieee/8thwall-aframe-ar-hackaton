@@ -1,12 +1,32 @@
+<!-- Fade In/Out -->
+<div id="blackFade" class="absolute-fill" style="z-index: 9"></div>
+
 <!-- UI Buttons used to change colors -->
 <div id="container"></div>
 
+<!-- Container for side drawer elements -->
+<div class="bottom-container">
+    <ul id="bottom-list">
+    </ul>
+</div>
+
+<!-- AR/3D Toggle -->
+<label id="toggle" class="switch" style="display: none">
+    <input id="changeView" type="checkbox"> 
+    <span class="slider round"></span>
+    <h1 class="ar-switch-text">AR</h1>
+    <h1 class="object-switch-text">3D</h1>
+</label>
+
 <a-scene 
+        change-scene
+        lock-scene
         custom-capture-btn
         xrextras-gesture-detector 
         landing-page 
         xrextras-loading 
         xrextras-runtime-error 
+        view-more
         shadow="type: pcfsoft"
         gltf-model="dracoDecoderPath: https://cdn.8thwall.com/web/aframe/draco-decoder/"
         renderer="colorManagement: true; physicallyCorrectLights: true; antialias: true;"
@@ -29,7 +49,8 @@
     <a-camera 
         id="camera" 
         position="0 1 2" 
-        cursor="fuse: false; rayOrigin: mouse;">
+        cursor="fuse: false; rayOrigin: mouse;"
+        orbit-controls="enabled: false; target: #model">
     </a-camera>
 
     <a-entity 
@@ -71,23 +92,13 @@
         gltf-model="#keyboardModel" 
         absolute-pinch-scale
         change-texture
+        info-component
         xrextras-hold-drag="rise-height: 0.8"
         xrextras-two-finger-rotate
         rotation="0 0 0"
         scale="5 5 5"
         shadow="receive: false;"
         visible="false">
-        <!-- Hotspots-->
-        <a-entity id="hotspot-group">
-            <a-sphere 
-                id="hs-keys" 
-                position="0.110 0.040 0.070" 
-                radius="0.05"
-                annotation="text: Lorem ipsum dolor isset"
-                class="cantap"
-          ></a-sphere>
-          
-        </a-entity>
     </a-entity>
 
     <!-- Adding the cantap class allows the ground to be clicked -->
@@ -100,4 +111,10 @@
         material="shader: shadow; opacity: 0.5;"
         shadow
     ></a-plane>
+
+    <a-sky 
+        id="sky" 
+        visible="false" 
+        material="shader: gradient; topColor: 40 40 40; bottomColor: 80 80 80">
+    </a-sky>
 </a-scene>
