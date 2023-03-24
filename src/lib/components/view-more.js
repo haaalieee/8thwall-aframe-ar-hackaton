@@ -8,6 +8,7 @@ export const viewMoreComponent = {
     model.addEventListener("componentchanged", (e) => {
       if (e.detail.name === "visible") {
         const infoContainer = document.getElementById("info");
+        const buyNowContainer = document.getElementById("buy-now");
         
         /** Create li item for the bottom list and attach button to view more information */
         const viewMoreItem = document.createElement("li");
@@ -18,6 +19,7 @@ export const viewMoreComponent = {
 
         viewBtn.addEventListener("click", ()=> {
             infoContainer.style.opacity = 100;
+            buyNowContainer.style.opacity = 100;
         })
     }
     });

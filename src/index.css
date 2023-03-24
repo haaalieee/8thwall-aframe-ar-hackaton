@@ -17,6 +17,11 @@ h2 {
   font-weight: 700;
   line-height: 1.2;
 }
+
+button {
+  cursor: pointer;
+}
+
 /* Color Carousel */
 #container {
   position: absolute;
@@ -108,7 +113,6 @@ h2 {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  cursor: pointer;
 }
 
 /* Toggle Button */
@@ -291,7 +295,6 @@ input:checked + .slider:before {
   border: none;
   padding: 0 !important;
   color: #ffffff;
-  cursor: pointer;
 }
 
 .info-container .info-close-btn p,
@@ -361,3 +364,73 @@ input:checked + .slider:before {
   margin: 12px 0 24px;
 }
 
+.info-pointer {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+  top: 43px;
+}
+
+.info-pointer::before {
+  content: "";
+  width: 1px;
+  height: 35px;
+  border-right: 3px dotted #FFFFFF;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: -39px;
+}
+
+/** ---- Buy Container --- **/
+.buy-container {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  background: #e948488f;
+  box-shadow: inset 0px 4px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+
+.buy-container .quantity-btn {
+  width: 26px;
+    height: 26px;
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+}
+
+.buy-container .buy-quantity {
+  display: flex;
+  width: 110px;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  margin-left: 12px;
+}
+
+.buy-container .buy-quantity p{ 
+  font-weight: 700px;
+  font-size: 26px;
+  line-height: 0;
+}
+
+.buy-container .buy-btn button {
+  padding: 0;
+  width: 140px;
+  background-color: #E94848;
+  border: 0;
+  height: 60px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 30px;
+}

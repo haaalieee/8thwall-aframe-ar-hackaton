@@ -5,12 +5,13 @@ import mapIcon from "../../assets/map-icon.png";
 
 export const infoComponent = {
   schema: {
-    offsetY: { default: 0.5 }, // y offset of label
+    offsetY: { default: 0.7 }, // y offset of label
+    offsetZ: { default: 0.3 }, // y offset of label
   },
   init() {
     this.scene = new THREE.Scene();
     this.camera = this.el.sceneEl.camera;
-    this.labelRenderer = new THREE.CSS2DRenderer();
+    this.infoRenderer = new THREE.CSS2DRenderer();
     this.lengthMeshBounds = new THREE.Vector3();
 
     // Holds the content to be inserted in the container
@@ -83,7 +84,19 @@ export const infoComponent = {
                                 </div>
                             </div>
                         </div>
+                        <div class="info-pointer"></div>
                   `;
+
+    const buyNowHtml = `<!--- Buy now ---->
+                        <div class="buy-quantity">
+                            <button class="quantity-btn">-</button>
+                            <p>1</p>
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <div class="buy-btn">
+                            <button>Buy now</button>
+                        </div>
+                        `;
 
     // Calculate glb-model bounding box
     this.el.addEventListener("model-loaded", () => {
@@ -97,58 +110,87 @@ export const infoComponent = {
 
     this.el.addEventListener("componentchanged", (e) => {
       if (e.detail.name === "visible") {
-        this.labelRenderer.setSize(window.innerWidth, window.innerHeight);
-        this.labelRenderer.domElement.style.position = "absolute";
-        this.labelRenderer.domElement.style.top = "0px";
-        this.labelRenderer.domElement.style.pointerEvents = "none";
-        document.body.appendChild(this.labelRenderer.domElement);
-        this.label = document.createElement("div");
-        this.label.className = "info-container";
-        this.label.id = "info";
-        this.label.style.opacity = 0;
-        
-        // Add content html
-        this.label.insertAdjacentHTML("beforeend", infoHtml);
+        this.infoRenderer.setSize(window.innerWidth, window.innerHeight);
+        this.infoRenderer.domElement.style.position = "absolute";
+        this.infoRenderer.domElement.style.top = "0px";
+        this.infoRenderer.domElement.style.pointerEvents = "none";
+        document.body.appendChild(this.infoRenderer.domElement);
+        this.info = document.createElement("div");
+        this.info.className = "info-container";
+        this.info.id = "info";
+        this.info.style.opacity = 0;
 
-        document.body.appendChild(this.label);
-        
-        this.labelObj = new THREE.CSS2DObject(this.label);
+        // Add content html
+        this.info.insertAdjacentHTML("beforeend", infoHtml);
+
+        document.body.appendChild(this.info);
+
+        this.infoObj = new THREE.CSS2DObject(this.info);
 
         // Move container based on model position and bounding box
         this.worldVec = new THREE.Vector3();
         this.worldPos = this.el.object3D.getWorldPosition(this.worldVec);
-        this.labelObj.position.copy(
-            new THREE.Vector3(
-                this.worldPos.x,
-                this.worldPos.y + this.lengthMeshBounds.y + this.data.offsetY,
-                this.worldPos.z
-            )
+        this.infoObj.position.copy(
+          new THREE.Vector3(
+            this.worldPos.x,
+            this.worldPos.y + this.lengthMeshBounds.y + this.data.offsetY,
+            this.worldPos.z - this.data.offsetZ
+          )
         );
 
         // Add to scene
-        this.scene.add(this.labelObj);
+        this.scene.add(this.infoObj);
+
+        // Html Renderer for buy now UI
+        this.buyNow = document.createElement("div");
+        this.buyNow.className = "buy-container";
+        this.buyNow.id = "buy-now";
+        this.buyNow.style.opacity = 0;
+        this.buyNow.insertAdjacentHTML("beforeend", buyNowHtml);
+
+        document.body.appendChild(this.buyNow);
+        this.buyNowObj = new THREE.CSS2DObject(this.buyNow);
+
+        this.buyNowObj.position.copy(
+          new THREE.Vector3(
+            this.worldPos.x,
+            this.worldPos.y - this.lengthMeshBounds.y - 0.3,
+            this.worldPos.z
+          )
+        );
+
+        // Add to scene
+        this.scene.add(this.buyNowObj);
 
         // Change opacity when close button is clicked
-        const closeBtn = document.getElementById('info-close');
-        closeBtn.addEventListener("click", ()=> {
-            console.log("close button clicked")
-            this.label.style.opacity = 0;
-        })
+        const closeBtn = document.getElementById("info-close");
+        closeBtn.addEventListener("click", () => {
+          console.log("close button clicked");
+          this.info.style.opacity = 0;
+        });
       }
     });
   },
   tick() {
-    if (this.label) {
+    if (this.info) {
       this.worldPos = this.el.object3D.getWorldPosition(this.worldVec);
-      this.labelObj.position.copy(
+      this.infoObj.position.copy(
         new THREE.Vector3(
-            this.worldPos.x,
-            this.worldPos.y + this.lengthMeshBounds.y + this.data.offsetY,
-            this.worldPos.z 
-          )
+          this.worldPos.x,
+          this.worldPos.y + this.lengthMeshBounds.y + this.data.offsetY,
+          this.worldPos.z - this.data.offsetZ
+        )
       );
 
-      this.labelRenderer.render(this.scene, this.camera);
+      this.buyNowObj.position.copy(
+        new THREE.Vector3(
+          this.worldPos.x,
+          this.worldPos.y - this.lengthMeshBounds.y - 0.3,
+          this.worldPos.z
+        )
+      );
+
+      this.infoRenderer.render(this.scene, this.camera);
     }
   },
 };
