@@ -72,18 +72,31 @@ button {
 }
 
 #recorder-button {
-  opacity: 0.8;
   cursor: pointer;
-  background: #F15F5F;
-  border: 7px solid #F6A4A4;
+  background: #ffffff;
   transform: translate(-50%, -50%) scale(1);
   transform-origin: 0 0;
   position: relative;
   top: 50%;
   left: 50%;
-  width: 58px;
-  height: 58px;
+  width: 46px;
+  height: 46px;
 }
+
+#recorder-button::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: inherit;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.23);
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
 
 /** Bottom Container **/
 .bottom-container {
@@ -113,18 +126,26 @@ button {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  position: relative;
+}
+
+.view-more-container #view-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }
 
 /* Toggle Button */
 /* The switch - the box around the slider */
 .switch {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  position: absolute;
-  display: inline-block;
-  width: 100px;
-  height: 105px;
-  right: 3vw;
-  top: 2vh;
+  display: grid!important;
+  grid-auto-flow: column;
+  grid-template-columns: 0px 1fr 1fr;
+  width: 73px;
+  height: 40px;
+  position: relative;
 }
 
 /* Hide default HTML checkbox */
@@ -135,45 +156,44 @@ button {
 }
 
 .switch h1 {
-  position: absolute;
-  font-family: "Rubik", monospace;
   font-weight: 600;
   text-align: center;
-  color: #666666;
-  font-size: 32px;
+  color: #ffffff;
+  font-size: 12px;
   right: 28px;
   border-radius: 12px;
+  line-height: 2.2;
 }
 
-.ar-switch-text {
-  bottom: 36px;
+.switch h1:first-of-type {
+  padding-left: 5px;
 }
 
-.object-switch-text {
-  bottom: -13px;
+.switch h1:last-of-type {
+  padding-right: 5px;
 }
 
 /* The slider */
 .slider {
-  position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #bebebecc;
+  background-color: #DE8B8B;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 50px;
-  width: 90px;
-  left: 5px;
-  top: 5px;
-  background-color: white;
+  height: 26px;
+  width: 26px;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  background-color: #E94848;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -182,23 +202,19 @@ input:checked + .slider {
   background-color: #bebebecc;
 }
 
-input:not(:checked) + .slider {
-  box-shadow: 0 0 10px #424242;
-}
-
 input:checked + .slider:before {
-  -webkit-transform: translateY(45px);
-  -ms-transform: translateY(45px);
-  transform: translateY(45px);
+  -webkit-transform: translate(31px, -50%);
+  -ms-transform: translate(31px, -50%);
+  transform: translate(31px, -50%);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 12px;
+  border-radius: 20px;
 }
 
 .slider.round:before {
-  border-radius: 10px;
+  border-radius: 50%;
 }
 
 /* Color Carousel */
@@ -252,7 +268,6 @@ input:checked + .slider:before {
 
 /* Information Container */
 .info-container {
-  z-index: 100;
   transform: translate(-50%, -50%);
   background: linear-gradient(
     118.12deg,
@@ -265,6 +280,7 @@ input:checked + .slider:before {
   height:275px;
   max-width: 301px;
   min-width: 290px;
+  cursor: pointer;
 }
 
 .info-container .info-content {
@@ -433,4 +449,64 @@ input:checked + .slider:before {
   font-weight: 700;
   text-transform: uppercase;
   border-radius: 30px;
+}
+
+/** Preview Container**/
+.show-with-download-button {
+  position: relative;
+  top: 0;
+  right: 0;
+  transform: unset;
+}
+
+#actionButton {
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: unset;
+  text-align: center;
+  color: white;
+  background-color: #ffffff00;
+  border-radius: 0.5em;
+  font-size: inherit;
+  min-width: unset;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+#actionButton img {
+  margin-left: unset;
+  display: block;
+  height: 7.5vmin;
+}
+
+#downloadButton {
+  border: 3px solid white;
+  border-radius: 50%;
+  padding: 0;
+}
+
+#downloadButton,
+#actionButton {
+  width: 60px;
+  height: 60px;
+}
+
+#downloadButton img,
+#actionButton img { 
+  height: 28px;
+  width: auto;
+  margin: 0 auto;
+}
+
+#actionButtonText {
+  display: none;
+}
+
+.bottom-bar {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 25px;
+  width: 100%;
+  margin: 0;
 }

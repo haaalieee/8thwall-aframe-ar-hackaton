@@ -9,7 +9,7 @@ export const lockScene = {
             if (e.detail.name === "visible") {
               /** Create li item for the bottom list and attach button to lock screen */
               const lockBtn = document.createElement("li");
-              bottomList.append(lockBtn);
+              bottomList.prepend(lockBtn);
               lockBtn.innerHTML = `<div class="lock-container"><button id="lock-btn"><img src=${lockIcon} /></button></div>`;
             }
           });

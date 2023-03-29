@@ -1,4 +1,4 @@
-import camera from "../../assets/camera-icon-white.png";
+import camera from "../../assets/camera-icon-svg.svg";
 
 export const customCaptureComponent = {
   init() {

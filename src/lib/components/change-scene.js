@@ -56,7 +56,7 @@ export const changeSceneComponent = {
             }, 1500);
 
             //Remove capture button
-            bottomList.style.display = "none";
+            // bottomList.style.display = "none";
           
           } else {
             // Disable button as scene loads
@@ -88,7 +88,7 @@ export const changeSceneComponent = {
             sky.setAttribute("visible", false);
 
             //Add capture button
-            bottomList.style.display = "flex";
+            // bottomList.style.display = "flex";
           }
         });
       }

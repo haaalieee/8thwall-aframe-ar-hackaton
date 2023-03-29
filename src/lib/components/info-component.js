@@ -1,5 +1,7 @@
 import arrowIcon from "../../assets/arrow-right-icon.png";
 import closeIcon from "../../assets/close-button-icon.svg";
+import ellipsisIcon from "../../assets/ellipsis-icon.png";
+import infoCloseIcon from "../../assets/infoclose-icon.png";
 import previewItemIcon from "../../assets/keyboard-preview-item.png";
 import mapIcon from "../../assets/map-icon.png";
 
@@ -13,7 +15,7 @@ export const infoComponent = {
     this.camera = this.el.sceneEl.camera;
     this.infoRenderer = new THREE.CSS2DRenderer();
     this.lengthMeshBounds = new THREE.Vector3();
-
+    
     // Holds the content to be inserted in the container
     const infoHtml = `<img src=${previewItemIcon} class="info-item-image"/>
                         <div class="info-content">
@@ -154,7 +156,7 @@ export const infoComponent = {
         this.buyNowObj.position.copy(
           new THREE.Vector3(
             this.worldPos.x,
-            this.worldPos.y - this.lengthMeshBounds.y - 0.3,
+            this.lengthMeshBounds.y - 0.4,
             this.worldPos.z
           )
         );
@@ -162,11 +164,43 @@ export const infoComponent = {
         // Add to scene
         this.scene.add(this.buyNowObj);
 
+        /** Create view more icon to view info-component content.
+         * Change pointer events to auto so that UI can be clickable **/
+        this.bottomList = document.getElementById("bottom-list");
+        this.viewMoreItem = document.createElement("li");
+        this.bottomList.prepend(this.viewMoreItem);
+        this.viewMoreItem.innerHTML = `<div class="view-more-container"><button id="view-btn"><img id="view-img" src=${ellipsisIcon} /></button></div>`;
+
+        this.viewBtn = document.getElementById("view-btn");
+        this.viewImg = document.getElementById("view-img");
+        let viewInfo = false;
+
+        this.viewBtn.addEventListener("click", () => {
+          if(!viewInfo) {
+            this.infoRenderer.domElement.style.pointerEvents = "auto"
+            this.info.style.opacity = 100;
+            this.buyNow.style.opacity = 100;
+            viewInfo = true;
+            this.viewImg.src = infoCloseIcon;
+          } else {
+            this.infoRenderer.domElement.style.pointerEvents = "none"
+            this.info.style.opacity = 0;
+            this.buyNow.style.opacity = 0;
+            viewInfo = false;
+            this.viewImg.src = ellipsisIcon;
+          } 
+        });
+
+      
         // Change opacity when close button is clicked
-        const closeBtn = document.getElementById("info-close");
-        closeBtn.addEventListener("click", () => {
+        this.closeBtn = document.getElementById("info-close");
+        this.closeBtn.addEventListener("click", () => {
           console.log("close button clicked");
+          this.infoRenderer.domElement.style.pointerEvents = "none"
           this.info.style.opacity = 0;
+          this.buyNow.style.opacity = 0;
+          viewInfo = false;
+          this.viewImg.src = ellipsisIcon;
         });
       }
     });
@@ -185,7 +219,7 @@ export const infoComponent = {
       this.buyNowObj.position.copy(
         new THREE.Vector3(
           this.worldPos.x,
-          this.worldPos.y - this.lengthMeshBounds.y - 0.3,
+          this.lengthMeshBounds.y - 0.4,
           this.worldPos.z
         )
       );

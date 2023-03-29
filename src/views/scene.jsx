@@ -6,12 +6,10 @@ import {
   annotationComponent,
   changeColorComponent,
   changeSceneComponent,
-  changeTextureComponent,
-  customCaptureComponent,
+  changeTextureComponent, customARComponent, customCaptureComponent,
   DISABLE_IMAGE_TARGETS,
-  ignoreRaycast, infoComponent, lockScene, responsiveImmersiveComponent,
-  tapPlaceCursorComponent,
-  viewMoreComponent
+  ignoreRaycast, infoComponent, responsiveImmersiveComponent,
+  tapPlaceCursorComponent
 } from "../lib/components";
 import html from "./keyboard.html";
 
@@ -28,9 +26,8 @@ const Scene = () => (
       { name: "ignore-raycast", val: ignoreRaycast },
       { name: "responsive-immersive", val: responsiveImmersiveComponent },
       { name: "custom-capture-btn", val: customCaptureComponent },
-      { name: "view-more", val: viewMoreComponent },
       { name: "info-component", val: infoComponent },
-      { name: "lock-scene", val: lockScene },
+      { name: "custom-ar-btn", val: customARComponent },
     ]}
     imageTargets={DISABLE_IMAGE_TARGETS}
   />
