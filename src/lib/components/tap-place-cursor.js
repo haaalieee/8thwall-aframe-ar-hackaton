@@ -15,7 +15,7 @@ export const tapPlaceCursorComponent = {
     this.el.sceneEl.addEventListener("click", (event) => {
       if (hasPlacedModel !== true) {
         hasPlacedModel = true;
-        this.model.setAttribute("position", this.el.object3D.position);
+        this.model.setAttribute('position', this.el.object3D.position);
         this.model.setAttribute("visible", "true");
         // Remove ghosted model from scene after model is placed
         this.cursor.parentNode.removeChild(this.cursor);
@@ -35,7 +35,7 @@ export const tapPlaceCursorComponent = {
       const [intersect] = intersects;
       this.cursorLocation = intersect.point;
     }
-    this.el.object3D.position.y = 0.1;
+    this.el.object3D.position.y = 0;
     this.el.object3D.position.lerp(this.cursorLocation, 0.4);
     // this.el.object3D.lookAt(this.threeCamera.position)
     // this.el.object3D.lookAt(this.threeCamera.position.x, this.threeCamera.position.y, 0)

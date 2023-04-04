@@ -1,9 +1,6 @@
-* {
-  font-family: "Inter", sans-serif;
-}
-
 body {
   margin: 0;
+  font-family: "Inter", sans-serif;
 }
 
 p {
@@ -28,7 +25,7 @@ button {
   width: 100vw;
   max-height: 20vw;
   left: 50%;
-  bottom: 2vh;
+  bottom: 111px;
   transform: translateX(-50%);
   z-index: 10;
   text-align: center;
@@ -42,8 +39,8 @@ button {
 }
 
 .carousel {
-  padding: 1rem;
-  border: 0.3rem solid white;
+  padding: 0.5rem;
+  border: 0.1rem solid white;
   margin: 0.5rem;
   border-radius: 50%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -51,7 +48,7 @@ button {
 }
 
 .selected {
-  box-shadow: 0px 0px 0px 0.3rem white;
+  box-shadow: 0px 0px 0px 0.1rem white;
   outline: none !important;
 }
 
@@ -65,6 +62,7 @@ button {
   bottom: 0;
   left: 0;
   transform: unset;
+  margin: 0 auto;
 }
 
 .progress-container {
@@ -97,7 +95,6 @@ button {
   border-radius: 50%;
 }
 
-
 /** Bottom Container **/
 .bottom-container {
   position: absolute;
@@ -110,18 +107,21 @@ button {
 .bottom-container ul {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-direction: row;
+  display: grid;
   width: 280px;
   max-width: 280px;
+  min-height: 90px;
   align-items: center;
   justify-content: space-between;
+  margin: 0;
+  grid-auto-flow: column;
+  grid-template-columns: 80px 1fr 80px;
 }
 
 .bottom-container .view-more-container button,
 .bottom-container .lock-container button {
   padding: 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -129,23 +129,28 @@ button {
   position: relative;
 }
 
+.view-more-container {
+  text-align: center;
+}
+
 .view-more-container #view-img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
 }
 
 /* Toggle Button */
 /* The switch - the box around the slider */
 .switch {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  display: grid!important;
+  display: grid !important;
   grid-auto-flow: column;
   grid-template-columns: 0px 1fr 1fr;
   width: 73px;
   height: 40px;
   position: relative;
+  margin: 0 auto;
 }
 
 /* Hide default HTML checkbox */
@@ -163,6 +168,7 @@ button {
   right: 28px;
   border-radius: 12px;
   line-height: 2.2;
+  cursor: pointer;
 }
 
 .switch h1:first-of-type {
@@ -176,7 +182,7 @@ button {
 /* The slider */
 .slider {
   cursor: pointer;
-  background-color: #DE8B8B;
+  background-color: #de8b8b;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   position: absolute;
@@ -193,7 +199,7 @@ button {
   top: 50%;
   left: 8px;
   transform: translateY(-50%);
-  background-color: #E94848;
+  background-color: #e94848;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -218,7 +224,7 @@ input:checked + .slider:before {
 }
 
 /* Color Carousel */
-#container {
+/* #container {
   position: absolute;
   width: 100vw;
   max-height: 20vw;
@@ -230,7 +236,7 @@ input:checked + .slider:before {
   pointer-events: none;
   overflow-x: scroll;
   white-space: nowrap;
-}
+} */
 
 /* Fade In & Out */
 #blackFade {
@@ -276,8 +282,8 @@ input:checked + .slider:before {
     rgba(34, 25, 138, 0.7) 92.32%
   );
   border-radius: 10px;
-  width:300px;
-  height:275px;
+  width: 300px;
+  height: 275px;
   max-width: 301px;
   min-width: 290px;
   cursor: pointer;
@@ -394,7 +400,7 @@ input:checked + .slider:before {
   content: "";
   width: 1px;
   height: 35px;
-  border-right: 3px dotted #FFFFFF;
+  border-right: 3px dotted #ffffff;
   display: block;
   margin: 0 auto;
   position: absolute;
@@ -416,11 +422,11 @@ input:checked + .slider:before {
 
 .buy-container .quantity-btn {
   width: 26px;
-    height: 26px;
-    border: none;
-    padding: 0;
-    border-radius: 50%;
-    background-color: #D9D9D9;
+  height: 26px;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #d9d9d9;
 }
 
 .buy-container .buy-quantity {
@@ -432,7 +438,7 @@ input:checked + .slider:before {
   margin-left: 12px;
 }
 
-.buy-container .buy-quantity p{ 
+.buy-container .buy-quantity p {
   font-weight: 700px;
   font-size: 26px;
   line-height: 0;
@@ -441,10 +447,10 @@ input:checked + .slider:before {
 .buy-container .buy-btn button {
   padding: 0;
   width: 140px;
-  background-color: #E94848;
+  background-color: #e94848;
   border: 0;
   height: 60px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
@@ -493,7 +499,7 @@ input:checked + .slider:before {
 }
 
 #downloadButton img,
-#actionButton img { 
+#actionButton img {
   height: 28px;
   width: auto;
   margin: 0 auto;

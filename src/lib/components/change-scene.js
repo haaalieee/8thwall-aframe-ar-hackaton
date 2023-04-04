@@ -31,14 +31,14 @@ export const changeSceneComponent = {
           if (changeSceneButton.checked) {
             // Disable button as scene loads
             toggle.classList.add("disable-button");
-            
+
             // Change to 3D View
             scene.removeAttribute("xrweb");
             model.removeAttribute("xrextras-hold-drag");
             model.setAttribute("scale", { x: 5, y: 5, z: 5 });
             model.setAttribute("position", { x: 0, y: 0, z: 0 });
             camera.setAttribute("position", { x: 0, y: 1, z: 2 });
-           
+
             // Set Attributes For Orbit Scene
             camera.setAttribute("orbit-controls", {
               enabled: true,
@@ -49,15 +49,20 @@ export const changeSceneComponent = {
               zoomSpeed: 0.5,
             });
             sky.setAttribute("visible", true);
-            
+
             // Re-enable button after scene loaded
             setTimeout(() => {
               toggle.classList.remove("disable-button");
             }, 1500);
 
+            //Change css style to center AR/3D button
+            bottomList.style.gridTemplateColumns= "1fr";
+
             //Remove capture button
-            // bottomList.style.display = "none";
-          
+            bottomList.children[1].style.display = "none";
+
+            //Remove view more button
+            bottomList.lastElementChild.style.display = "none";
           } else {
             // Disable button as scene loads
             toggle.classList.add("disable-button");
@@ -87,8 +92,14 @@ export const changeSceneComponent = {
             scene.addEventListener("realityready", reset);
             sky.setAttribute("visible", false);
 
+            //Change css style back to original grid
+            bottomList.style.gridTemplateColumns= "80px 1fr 80px";
+
             //Add capture button
-            // bottomList.style.display = "flex";
+            bottomList.children[1].style.display = "block";
+
+            //Add view more button
+            bottomList.lastElementChild.style.display = "block";
           }
         });
       }

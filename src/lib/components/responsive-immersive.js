@@ -4,7 +4,7 @@ export const responsiveImmersiveComponent = {
   init() {
     const onAttach = ({ sessionAttributes }) => {
       const model = document.getElementById("model");
-      const hotspots = document.getElementById("hotspot-group");
+      const modelCursor = document.getElementById("cursor");
       const container = document.getElementById("container");
       const s = sessionAttributes;
       if (
@@ -17,7 +17,6 @@ export const responsiveImmersiveComponent = {
         !s.usesWebXr
       ) {
         // Desktop-specific behavior goes here
-        hotspots.parentNode.removeChild(hotspots); // remove hotspots
         const addComponents = () => {
           model.setAttribute("reflections", "type: static");
         };
@@ -25,7 +24,6 @@ export const responsiveImmersiveComponent = {
           ? addComponents()
           : model.addEventListener("model-loaded", addComponents);
         console.log("desktop");
-        console.log(model);
       } else if (
         s.cameraLinkedToViewer &&
         s.controlsCamera &&
@@ -36,7 +34,6 @@ export const responsiveImmersiveComponent = {
         s.usesWebXr
       ) {
         // HMD-specific behavior goes here
-        hotspots.parentNode.removeChild(hotspots); // remove hotspots
         if (this.el.sceneEl.xrSession.environmentBlendMode === "opaque") {
           // VR HMD (i.e. Oculus Quest) behavior goes here
           model.setAttribute("ignore-raycast", "");
@@ -70,12 +67,14 @@ export const responsiveImmersiveComponent = {
       ) {
         // Mobile-specific behavior goes here
         this.el.addEventListener("coaching-overlay.show", (e) => {
+          modelCursor.object3D.scale.set(0.001, 0.001, 0.001);
           model.object3D.scale.set(0.001, 0.001, 0.001);
           container.style.display = "none";
         });
         this.el.addEventListener("coaching-overlay.hide", (e) => {
           container.style.display = "block";
           model.object3D.scale.set(1, 1, 1);
+          modelCursor.object3D.scale.set(1, 1, 1);
         });
         const addComponents = () => {
           model.setAttribute("reflections", "type: realtime");

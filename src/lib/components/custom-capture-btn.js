@@ -10,6 +10,7 @@ export const customCaptureComponent = {
     const closePreviewBtn = document.getElementById("closePreviewButton");
 
     bottomList.style.display = "none";
+    bottomList.parentElement.style.zIndex = 5;
 
     model.addEventListener("componentchanged", (e) => {
       const captureList = document.createElement("li");
@@ -19,7 +20,8 @@ export const customCaptureComponent = {
         captureList.append(recorderContainer);
         captureBtn.innerHTML = `<img id="icon" src=${camera}>`;
 
-        bottomList.style.display = "flex";
+        bottomList.style.display = "grid";
+
 
         window.addEventListener("mediarecorder-photocomplete", () => {
           // Hide list when screen preview is active
@@ -36,7 +38,8 @@ export const customCaptureComponent = {
 
           
           // Show list when screen preview is not active
-          bottomList.style.display = "flex";
+          bottomList.style.display = "grid";
+
         });
       }
     });
