@@ -58,7 +58,7 @@ export const absPinchScaleComponent = {
     this.labelObj.position.copy(
       new THREE.Vector3(
         this.el.object3D.position.x,
-        this.lengthMeshBounds.y + 0.3,
+        this.lengthMeshBounds.y,
         this.el.object3D.position.z
       )
     );

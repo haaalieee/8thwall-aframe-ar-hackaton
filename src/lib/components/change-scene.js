@@ -34,6 +34,7 @@ export const changeSceneComponent = {
 
             // Change to 3D View
             scene.removeAttribute("xrweb");
+            scene.removeAttribute("coaching-overlay");
             model.removeAttribute("xrextras-hold-drag");
             model.setAttribute("scale", { x: 5, y: 5, z: 5 });
             model.setAttribute("position", { x: 0, y: 0, z: 0 });
@@ -69,15 +70,15 @@ export const changeSceneComponent = {
 
             // Change To AR View
             flipBg.style.opacity = 1;
-            scene.setAttribute("xrweb", "");
+            scene.setAttribute("xrweb", "allowedDevices: any; scale: absolute");
+            scene.setAttribute("coaching-overlay", "animationColor: #E86FFF; promptText: To generate scale push your phone forward and then pull back;");
             model.setAttribute("reflections", "type: realtime");
             model.setAttribute("absolute-pinch-scale", "");
             model.setAttribute("change-texture", "");
-            model.setAttribute("xrextras-hold-drag", "");
-            model.setAttribute("scale", { x: 5, y: 5, z: 5 });
-            model.setAttribute("position", { x: 0, y: 0, z: 0 });
+            model.setAttribute("xrextras-hold-drag", "rise-height: 0.1");
             model.setAttribute("rotation", { x: 0, y: 0, z: 0 });
-            camera.setAttribute("position", { x: 0, y: 1, z: 2 });
+            model.setAttribute("position", { x: 0, y: 0, z: -0.1 });
+            camera.setAttribute("position", { x: 0, y: 1.5, z: 1 });
             camera.setAttribute("orbit-controls", { enabled: false });
 
             // Re-set Model To Center

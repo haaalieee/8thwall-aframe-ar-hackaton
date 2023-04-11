@@ -21,6 +21,8 @@ export const tapPlaceCursorComponent = {
         this.cursor.parentNode.removeChild(this.cursor);
         // Add raycaster to camera
         this.camera.setAttribute("raycaster", "objects: .cantap");
+
+        console.log(this.model)
       }
     });
   },
