@@ -7,10 +7,8 @@ export * from './change-texture';
 export * from './custom-ar-btn';
 export * from './custom-capture-btn';
 export * from './ignore-raycast';
-export * from './info-component';
 export * from './lock-scene';
 export * from './responsive-immersive';
 export * from './tap-place-cursor';
-export * from './view-more';
-
+export * from './view-info';
 

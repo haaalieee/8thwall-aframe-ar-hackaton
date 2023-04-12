@@ -1,6 +1,6 @@
 import ellipsisIcon from "../../assets/ellipsis-icon-svg.svg";
 
-export const viewMoreComponent = {
+export const viewMoreBtn = {
   init() {
     const model = document.getElementById("model");
     const bottomList = document.getElementById("bottom-list");

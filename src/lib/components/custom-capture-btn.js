@@ -6,7 +6,7 @@ export const customCaptureComponent = {
     const bottomList = document.getElementById("bottom-list");
     const recorderContainer = document.getElementById("recorder");
     const captureBtn = document.getElementById("recorder-button");
-    const textureSelectionContainer = document.getElementById("container");
+    const textureSelectionContainer = document.getElementById("variants-container");
     const closePreviewBtn = document.getElementById("closePreviewButton");
 
     bottomList.style.display = "none";
@@ -16,7 +16,7 @@ export const customCaptureComponent = {
       const captureList = document.createElement("li");
 
       if (e.detail.name === "visible") {
-        bottomList.prepend(captureList);
+        bottomList.append(captureList);
         captureList.append(recorderContainer);
         captureBtn.innerHTML = `<img id="icon" src=${camera}>`;
 

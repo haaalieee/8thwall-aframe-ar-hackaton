@@ -5,7 +5,7 @@ export const responsiveImmersiveComponent = {
     const onAttach = ({ sessionAttributes }) => {
       const model = document.getElementById("model");
       const modelCursor = document.getElementById("cursor");
-      const container = document.getElementById("container");
+      const container = document.getElementById("variants-container");
       const s = sessionAttributes;
       if (
         !s.cameraLinkedToViewer &&

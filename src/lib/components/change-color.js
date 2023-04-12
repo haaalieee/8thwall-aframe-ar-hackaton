@@ -1,6 +1,6 @@
 export const changeColorComponent = {
   init() {
-    const container = document.getElementById("container");
+    const container = document.getElementById("variants-container");
     // These hex colors are used by the UI buttons and car
     // default: purple, orange, green, blue, black
     const colorList = ["#ffffff", "#ff9500", "#66cc00", "#5ac8fa", "#000"];

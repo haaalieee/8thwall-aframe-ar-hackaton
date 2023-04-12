@@ -5,7 +5,7 @@ import infoCloseIcon from "../../assets/infoclose-icon.png";
 import previewItemIcon from "../../assets/keyboard-preview-item.png";
 import mapIcon from "../../assets/map-icon.png";
 
-export const infoComponent = {
+export const viewInfo = {
   schema: {
     offsetY: { default: 0.7 }, // y offset of label
     offsetZ: { default: 0.3 }, // y offset of label
@@ -168,7 +168,7 @@ export const infoComponent = {
          * Change pointer events to auto so that UI can be clickable **/
         this.bottomList = document.getElementById("bottom-list");
         this.viewMoreItem = document.createElement("li");
-        this.bottomList.prepend(this.viewMoreItem);
+        this.bottomList.append(this.viewMoreItem);
         this.viewMoreItem.innerHTML = `<div class="view-more-container"><button id="view-btn"><img id="view-img" src=${ellipsisIcon} /></button></div>`;
 
         this.viewBtn = document.getElementById("view-btn");

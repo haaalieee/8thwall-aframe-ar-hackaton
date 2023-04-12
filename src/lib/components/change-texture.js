@@ -1,3 +1,6 @@
+import variantsIcon from "../../assets/variants-icon.png";
+import variantsCloseIcon from "../../assets/variantsclose-icon.png";
+
 const remapMaterialUVs = (
   material,
   remapUVs,
@@ -119,18 +122,46 @@ const remapMaterialUVs = (
 
 export const changeTextureComponent = {
   init() {
-    const container = document.getElementById("container");
+    const container = document.getElementById("variants-container");
+
+    /** Create variants icon button and append to bottom list  */
+    const bottomList = document.getElementById("bottom-list");
+    const variantsItem = document.createElement("li");
+
+    // Create variants close button
+    const closeButton = `<button id="variants-close-btn"><img id="variants-close-img" src=${variantsCloseIcon} /></button>`;
+    container.insertAdjacentHTML('beforeend', closeButton);
+
+    bottomList.prepend(variantsItem);
+
+    variantsItem.innerHTML = `<div class="variants-container"><button id="variants-btn"><img id="variants-img" src=${variantsIcon} /></button></div>`;
 
     // These hex colors are used by the UI buttons and car
     // default: purple, orange, green, blue, black
     const colorList = ["#6a7a87", "#36adc4", "#c7a6bd", "#91ac9a", "#c09cb4"];
+
+    // Show colorlist when variants button is clicked
+    const variantsBtn = document.getElementById("variants-btn");
+
+    variantsBtn.addEventListener("click", () =>{
+      container.style.bottom = "0px";
+      bottomList.style.pointerEvents = "none";
+    })
+
+    // Hide colorlist when variants button is clicked
+    const variantsCloseBtn = document.getElementById("variants-close-btn");
+    
+    variantsCloseBtn.addEventListener("click", () =>{
+      container.style.bottom = "-200px";
+      bottomList.style.pointerEvents = "auto";
+    })
 
     this.el.addEventListener("componentchanged", (e) => {
       if (e.detail.name === "visible") {
         // Named the specified mesh within the 3D model 'KeyBase' (The mesh for the base of the keyboard)
         const setColor = ({ newColor, button }) => {
           for (let i = 0; i < colorList.length; i++) {
-            const btns = document.getElementsByTagName("button");
+            const btns = document.getElementsByClassName("carousel");
             btns[i].classList.remove("selected");
           }
           // const modelMesh = this.el
@@ -196,7 +227,7 @@ export const changeTextureComponent = {
         }
 
         // Select first button in list
-        const firstButton = container.getElementsByTagName("button")[0];
+        const firstButton = container.getElementsByClassName("carousel")[0];
         // set car to first button's color
         setColor({ newColor: colorList[0], button: firstButton });
       }

@@ -2,7 +2,8 @@
 <div id="blackFade" class="absolute-fill" style="z-index: 9"></div>
 
 <!-- UI Buttons used to change colors -->
-<div id="container"></div>
+<div id="variants-container">
+</div>
 
 <!-- Container for side drawer elements -->
 <div class="bottom-container">
@@ -10,20 +11,10 @@
     </ul>
 </div>
 
-<!-- AR/3D Toggle -->
-<label id="toggle" class="switch" style="display: none">
-    <input id="changeView" type="checkbox"> 
-    <span class="slider round"></span>
-    <h1 class="ar-switch-text">AR</h1>
-    <h1 class="object-switch-text">3D</h1>
-</label>
-
 <a-scene 
         coaching-overlay="animationColor: #E86FFF; promptText: To generate scale push your phone forward and then pull back;"
         responsive-immersive
-        change-scene
         custom-capture-btn
-        custom-ar-btn
         xrextras-gesture-detector 
         landing-page 
         xrextras-loading 
@@ -92,7 +83,7 @@
         gltf-model="#keyboardModel" 
         absolute-pinch-scale
         change-texture
-        info-component
+        view-info
         xrextras-hold-drag="rise-height: 0.1"
         xrextras-two-finger-rotate
         rotation="0 0 0"
