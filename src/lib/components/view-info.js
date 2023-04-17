@@ -116,18 +116,32 @@ export const viewInfo = {
         this.infoRenderer.domElement.style.position = "absolute";
         this.infoRenderer.domElement.style.top = "0px";
         this.infoRenderer.domElement.style.pointerEvents = "none";
+
         document.body.appendChild(this.infoRenderer.domElement);
+        
+        // Parent container holding both infoHtml and buyNowhtml
+        this.parentInfo = document.createElement("div");
+        this.parentInfo.className = "info-parent-container";
+
+        // Html for info UI
         this.info = document.createElement("div");
         this.info.className = "info-container";
         this.info.id = "info";
         this.info.style.opacity = 0;
-
-        // Add content html
         this.info.insertAdjacentHTML("beforeend", infoHtml);
+        this.parentInfo.appendChild(this.info);
+        
+        document.body.appendChild(this.parentInfo);
 
-        document.body.appendChild(this.info);
+        // Html for buy now UI
+        this.buyNow = document.createElement("div");
+        this.buyNow.className = "buy-container";
+        this.buyNow.id = "buy-now";
+        this.buyNow.style.opacity = 0;
+        this.buyNow.insertAdjacentHTML("beforeend", buyNowHtml);
+        this.parentInfo.appendChild(this.buyNow);
 
-        this.infoObj = new THREE.CSS2DObject(this.info);
+        this.infoObj = new THREE.CSS2DObject(this.parentInfo);
 
         // Move container based on model position and bounding box
         this.worldVec = new THREE.Vector3();
@@ -135,34 +149,26 @@ export const viewInfo = {
         this.infoObj.position.copy(
           new THREE.Vector3(
             this.worldPos.x,
-            this.worldPos.y + this.lengthMeshBounds.y + this.data.offsetY,
-            this.worldPos.z - this.data.offsetZ
+            this.lengthMeshBounds.y,
+            this.worldPos.z
           )
         );
 
         // Add to scene
         this.scene.add(this.infoObj);
 
-        // Html Renderer for buy now UI
-        this.buyNow = document.createElement("div");
-        this.buyNow.className = "buy-container";
-        this.buyNow.id = "buy-now";
-        this.buyNow.style.opacity = 0;
-        this.buyNow.insertAdjacentHTML("beforeend", buyNowHtml);
+        // this.buyNowObj = new THREE.CSS2DObject(this.buyNow);
 
-        document.body.appendChild(this.buyNow);
-        this.buyNowObj = new THREE.CSS2DObject(this.buyNow);
+        // this.buyNowObj.position.copy(
+        //   new THREE.Vector3(
+        //     this.worldPos.x,
+        //     this.lengthMeshBounds.y - 0.15,
+        //     this.worldPos.z
+        //   )
+        // );
 
-        this.buyNowObj.position.copy(
-          new THREE.Vector3(
-            this.worldPos.x,
-            this.lengthMeshBounds.y - 0.4,
-            this.worldPos.z
-          )
-        );
-
-        // Add to scene
-        this.scene.add(this.buyNowObj);
+        // // Add to scene
+        // this.scene.add(this.buyNowObj);
 
         /** Create view more icon to view info-component content.
          * Change pointer events to auto so that UI can be clickable **/
@@ -211,15 +217,7 @@ export const viewInfo = {
       this.infoObj.position.copy(
         new THREE.Vector3(
           this.worldPos.x,
-          this.worldPos.y + this.lengthMeshBounds.y + this.data.offsetY,
-          this.worldPos.z - this.data.offsetZ
-        )
-      );
-
-      this.buyNowObj.position.copy(
-        new THREE.Vector3(
-          this.worldPos.x,
-          this.lengthMeshBounds.y - 0.4,
+          this.lengthMeshBounds.y,
           this.worldPos.z
         )
       );
