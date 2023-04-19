@@ -15,7 +15,7 @@ export const viewInfo = {
     this.camera = this.el.sceneEl.camera;
     this.infoRenderer = new THREE.CSS2DRenderer();
     this.lengthMeshBounds = new THREE.Vector3();
-    
+
     // Holds the content to be inserted in the container
     const infoHtml = `<img src=${previewItemIcon} class="info-item-image"/>
                         <div class="info-content">
@@ -91,9 +91,9 @@ export const viewInfo = {
 
     const buyNowHtml = `<!--- Buy now ---->
                         <div class="buy-quantity">
-                            <button class="quantity-btn">-</button>
-                            <p>1</p>
-                            <button class="quantity-btn">+</button>
+                            <button class="quantity-btn decrease">-</button>
+                            <input type="text" class="quantity-amount" name="" value="1" min="0" readonly/>
+                            <button class="quantity-btn increase">+</button>
                         </div>
                         <div class="buy-btn">
                             <button>Buy now</button>
@@ -118,7 +118,7 @@ export const viewInfo = {
         this.infoRenderer.domElement.style.pointerEvents = "none";
 
         document.body.appendChild(this.infoRenderer.domElement);
-        
+
         // Parent container holding both infoHtml and buyNowhtml
         this.parentInfo = document.createElement("div");
         this.parentInfo.className = "info-parent-container";
@@ -130,7 +130,7 @@ export const viewInfo = {
         this.info.style.opacity = 0;
         this.info.insertAdjacentHTML("beforeend", infoHtml);
         this.parentInfo.appendChild(this.info);
-        
+
         document.body.appendChild(this.parentInfo);
 
         // Html for buy now UI
@@ -182,27 +182,70 @@ export const viewInfo = {
         let viewInfo = false;
 
         this.viewBtn.addEventListener("click", () => {
-          if(!viewInfo) {
-            this.infoRenderer.domElement.style.pointerEvents = "auto"
+          if (!viewInfo) {
+            this.infoRenderer.domElement.style.pointerEvents = "auto";
             this.info.style.opacity = 100;
             this.buyNow.style.opacity = 100;
             viewInfo = true;
             this.viewImg.src = infoCloseIcon;
           } else {
-            this.infoRenderer.domElement.style.pointerEvents = "none"
+            this.infoRenderer.domElement.style.pointerEvents = "none";
             this.info.style.opacity = 0;
             this.buyNow.style.opacity = 0;
             viewInfo = false;
             this.viewImg.src = ellipsisIcon;
-          } 
+          }
         });
 
-      
+        // Increment, decrement buy button
+        let buyValue,
+        quantity = document.getElementsByClassName("buy-quantity");
+
+        function createBindings(quantityContainer) {
+          const quantityAmount =
+            quantityContainer.getElementsByClassName("quantity-amount")[0];
+          const increase =
+            quantityContainer.getElementsByClassName("increase")[0];
+          const decrease =
+            quantityContainer.getElementsByClassName("decrease")[0];
+          increase.addEventListener("click", function () {
+            increaseValue(quantityAmount);
+          });
+          decrease.addEventListener("click", function () {
+            decreaseValue(quantityAmount);
+          });
+        }
+
+        function init() {
+          for (var i = 0; i < quantity.length; i++) {
+            createBindings(quantity[i]);
+          }
+        }
+
+        function increaseValue(quantityAmount) {
+          buyValue = parseInt(quantityAmount.value, 10);
+
+          buyValue = isNaN(buyValue) ? 0 : buyValue;
+          buyValue++;
+          quantityAmount.value = buyValue;
+        }
+
+        function decreaseValue(quantityAmount) {
+          buyValue = parseInt(quantityAmount.value, 10);
+
+          buyValue = isNaN(buyValue) ? 0 : buyValue;
+          if (buyValue > 0) buyValue--;
+
+          quantityAmount.value = buyValue;
+        }
+
+        init();
+
         // Change opacity when close button is clicked
         this.closeBtn = document.getElementById("info-close");
         this.closeBtn.addEventListener("click", () => {
           console.log("close button clicked");
-          this.infoRenderer.domElement.style.pointerEvents = "none"
+          this.infoRenderer.domElement.style.pointerEvents = "none";
           this.info.style.opacity = 0;
           this.buyNow.style.opacity = 0;
           viewInfo = false;

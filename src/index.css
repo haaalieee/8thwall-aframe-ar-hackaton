@@ -465,10 +465,14 @@ input:checked + .slider:before {
   margin-left: 12px;
 }
 
-.buy-container .buy-quantity p {
-  font-weight: 700px;
-  font-size: 26px;
+.buy-container .quantity-amount {
+  font-size: 22px;
   line-height: 0;
+  width: 25px;
+  text-align: center;
+  border: none;
+  background-color: unset;
+  color: white;
 }
 
 .buy-container .buy-btn button {
