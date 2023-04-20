@@ -12,19 +12,18 @@ export const tapPlaceCursorComponent = {
     // components should be between -1 and 1.  Here we want the cursor in the center of the screen.
     this.rayOrigin = new THREE.Vector2(0, 0);
     this.cursorLocation = new THREE.Vector3(0, 0, 0);
-    this.el.sceneEl.addEventListener("click", (event) => {
+    this.el.sceneEl.addEventListener("click", () => {
       if (hasPlacedModel !== true) {
         hasPlacedModel = true;
-        this.model.setAttribute('position', this.el.object3D.position);
+        this.model.setAttribute("position", this.el.object3D.position);
         this.model.setAttribute("visible", "true");
         // Remove ghosted model from scene after model is placed
         this.cursor.parentNode.removeChild(this.cursor);
         // Add raycaster to camera
         this.camera.setAttribute("raycaster", "objects: .cantap");
-
-        console.log(this.model)
       }
     });
+
   },
   tick() {
     // Raycast from camera to 'ground'
@@ -42,6 +41,6 @@ export const tapPlaceCursorComponent = {
     // this.el.object3D.lookAt(this.threeCamera.position)
     // this.el.object3D.lookAt(this.threeCamera.position.x, this.threeCamera.position.y, 0)
     this.el.object3D.rotation.y = this.threeCamera.rotation.y;
+    
   },
 };
-

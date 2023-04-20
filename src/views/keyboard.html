@@ -27,8 +27,8 @@
     <!-- We can define assets here to be loaded when A-Frame initializes -->
     <a-assets>
         <!-- Credit to Poly by Google for the model: https://poly.google.com/view/5ZMAz7_ucTn -->
-        <a-asset-item id="keyboardModel" src="./keyboardver8.glb"></a-asset-item>
-        <a-asset-item id="keyboardModel-transparent" src="./keyboard-transparent8.glb"></a-asset-item>
+        <a-asset-item id="keyboardModel" src="./keyboardver9.glb"></a-asset-item>
+        <a-asset-item id="keyboardModel-transparent" src="./keyboard-transparent9.glb"></a-asset-item>
         <img id="icon" src="../assets/rectangle-icon.png">
     </a-assets>
 
@@ -42,7 +42,7 @@
         id="camera" 
         position="0 1.5 2" 
         cursor="fuse: false; rayOrigin: mouse;"
-        orbit-controls="enabled: false; target: #model">
+        orbit-controls="enabled: false; target: #mo9el">
     </a-camera>
 
     <a-entity 
@@ -53,9 +53,10 @@
         <a-plane 
                 rotation="-90 90 0" 
                 position="0 0 -0.080"
-                scale="0.41 0.39 0.2"
+                scale="0.40 0.45 0.2"
                 material="src: #icon; opacity: 0.5; roughness: 0.8; metalness: 0;">
         </a-plane>
+        <a-text value="Tap screen to place" align="center" position="0 0.11 -0.1" scale="0.15 0.15 0.15"></a-text>
     </a-entity>
 
     <a-entity 

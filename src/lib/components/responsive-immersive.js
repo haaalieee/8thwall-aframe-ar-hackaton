@@ -6,6 +6,7 @@ export const responsiveImmersiveComponent = {
       const model = document.getElementById("model");
       const modelCursor = document.getElementById("cursor");
       const container = document.getElementById("variants-container");
+      const bottomContainer = document.getElementById("bottom-list");
       const s = sessionAttributes;
       if (
         !s.cameraLinkedToViewer &&
@@ -24,6 +25,7 @@ export const responsiveImmersiveComponent = {
           ? addComponents()
           : model.addEventListener("model-loaded", addComponents);
         console.log("desktop");
+
       } else if (
         s.cameraLinkedToViewer &&
         s.controlsCamera &&
@@ -68,12 +70,14 @@ export const responsiveImmersiveComponent = {
         // Mobile-specific behavior goes here
         this.el.addEventListener("coaching-overlay.show", (e) => {
           modelCursor.object3D.scale.set(0.001, 0.001, 0.001);
-          model.object3D.scale.set(0.001, 0.001, 0.001);
+          // model.object3D.scale.set(0.001, 0.001, 0.001);
           container.style.display = "none";
+          bottomContainer.style.display = "none";
         });
         this.el.addEventListener("coaching-overlay.hide", (e) => {
           container.style.display = "block";
-          model.object3D.scale.set(1, 1, 1);
+          bottomContainer.style.display = "grid";
+          // model.object3D.scale.set(1, 1, 1);
           modelCursor.object3D.scale.set(1, 1, 1);
         });
         const addComponents = () => {

@@ -547,3 +547,25 @@ input:checked + .slider:before {
   width: 100%;
   margin: 0;
 }
+
+/** Tap container**/
+.tap-container {
+  position: absolute;
+  z-index: 100;
+  text-align: center;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  color: white;
+  background-color: #585d6c;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  width: 200px;
+  padding: 0.1rem 1rem;
+  display: none;
+}
+
+.tap-container p{
+  font-size: 1rem;   
+  line-height: 1.3;
+}
