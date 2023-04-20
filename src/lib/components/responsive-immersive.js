@@ -6,7 +6,7 @@ export const responsiveImmersiveComponent = {
       const model = document.getElementById("model");
       const modelCursor = document.getElementById("cursor");
       const container = document.getElementById("variants-container");
-      const bottomContainer = document.getElementById("bottom-list");
+      const bottomContainer = document.getElementById("bottom-drawer");
       const s = sessionAttributes;
       if (
         !s.cameraLinkedToViewer &&
