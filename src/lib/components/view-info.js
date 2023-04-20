@@ -78,7 +78,7 @@ export const viewInfo = {
                                     <p>$100</p>
                                 </div>
                                 <div class="info-item-link">
-                                    <a href="">
+                                    <a href="/">
                                         <p>Go to website
                                             <span><img src=${arrowIcon} /></span>
                                         </p>
@@ -96,7 +96,7 @@ export const viewInfo = {
                             <button class="quantity-btn increase">+</button>
                         </div>
                         <div class="buy-btn">
-                            <button>Buy now</button>
+                            <a href="/">Buy now</a>
                         </div>
                         `;
 

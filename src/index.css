@@ -475,7 +475,7 @@ input:checked + .slider:before {
   color: white;
 }
 
-.buy-container .buy-btn button {
+.buy-container .buy-btn a {
   padding: 0;
   width: 140px;
   background-color: #e94848;
@@ -486,6 +486,10 @@ input:checked + .slider:before {
   font-weight: 700;
   text-transform: uppercase;
   border-radius: 30px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-decoration: none;
 }
 
 /** Preview Container**/
